@@ -4,6 +4,14 @@ if (isset($_GET["term"])) {
 } else {
     exit("You must enter a search term");
 }
+
+// if (isset($_GET["type"])) {
+//     $type = $_GET["type"];
+// } else {
+//     $type = "sites";
+// }
+
+$type = isset($_GET["type"]) ? $_GET["type"] : "sites";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -40,8 +48,8 @@ if (isset($_GET["term"])) {
 
             <div class="tabsContainer">
                 <ul class="tabList">
-                    <li><a href='<?php echo "search.php?term=$term&type=sites"; ?>'>Sites</a></li>
-                    <li><a href='<?php echo "search.php?term=$term&type=images"; ?>'>Images</a></li>
+                    <li class="<?php echo $type == 'sites' ? 'active' : '' ?>"><a href='<?php echo "search.php?term=$term&type=sites"; ?>'>Sites</a></li>
+                    <li class="<?php echo $type == 'images' ? 'active' : '' ?>"><a href='<?php echo "search.php?term=$term&type=images"; ?>'>Images</a></li>
                 </ul>
             </div>
         </div>
