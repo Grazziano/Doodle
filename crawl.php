@@ -1,6 +1,9 @@
 <?php
 include("classes/DomDocumentParser.php");
 
+$alreadyCrawled = array();
+$crawling = array();
+
 function createLink($src, $url)
 {
     $scheme = parse_url($url)["scheme"];
@@ -22,6 +25,9 @@ function createLink($src, $url)
 
 function followLinks($url)
 {
+    global $alreadyCrawled;
+    global $crawling;
+    
     $parser = new DomDocumentParser($url);
 
     $linkList = $parser->getLinks();
@@ -37,9 +43,22 @@ function followLinks($url)
 
         $href = createLink($href, $url);
 
-        // echo $href . "<br>";
+        if (!in_array($href, $alreadyCrawled)) {
+            $alreadyCrawled[] = $href;
+            $crawling[] = $href;
+
+            // Insert $href
+        }
+
+        echo $href . "<br>";
+    }
+
+    array_shift($crawling);
+
+    foreach ($crawling as $site) {
+        followLinks($site);
     }
 }
 
-$staticUrl = "http://grazziano.space/";
+$staticUrl = "http://www.bbc.com";
 followLinks($staticUrl);
