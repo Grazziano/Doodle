@@ -79,10 +79,20 @@ $page = isset($_GET["page"]) ? $_GET["page"] : 1;
                 $pagesLeft = 10;
 
                 while ($pagesLeft != 0) {
-                    echo "<div class='pageNumberContainer'>
-                            <img src='assets/images/page.png'>
-                            <span class='pageNumber'>$currentPage</span>
-                        </div>";
+
+                    if ($currentPage == $page) {
+                        echo "<div class='pageNumberContainer'>
+                                <img src='assets/images/pageSelected.png'>
+                                <span class='pageNumber'>$currentPage</span>
+                            </div>";
+                    } else {
+                        echo "<div class='pageNumberContainer'>
+                                <a href='search.php?term=$term&type=$type&page=$currentPage'>
+                                    <img src='assets/images/page.png'>
+                                    <span class='pageNumber'>$currentPage</span>
+                                </a>
+                            </div>";
+                    }
 
                     $currentPage++;
                     $pagesLeft--;
