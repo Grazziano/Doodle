@@ -85,7 +85,11 @@ $page = isset($_GET["page"]) ? $_GET["page"] : 1;
                     $currentPage = 1;
                 }
 
-                while ($pagesLeft != 0) {
+                if ($currentPage + $pagesLeft > $numPages + 1) {
+                    $currentPage = $numPages - $pagesLeft;
+                }
+
+                while ($pagesLeft != 0 && $currentPage <= $numPages) {
 
                     if ($currentPage == $page) {
                         echo "<div class='pageNumberContainer'>
