@@ -26,6 +26,7 @@ $page = isset($_GET["page"]) ? $_GET["page"] : 1;
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome to Doodle</title>
     <link rel="stylesheet" href="assets/css/style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -117,6 +118,7 @@ $page = isset($_GET["page"]) ? $_GET["page"] : 1;
         </div>
 
     </div>
+    <script src="assets/js/script.js"></script>
 </body>
 
 </html>
