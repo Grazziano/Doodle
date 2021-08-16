@@ -125,6 +125,7 @@ $page = isset($_GET["page"]) ? $_GET["page"] : 1;
         </div>
 
     </div>
+    <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
     <script src="assets/js/script.js"></script>
 </body>
 
