@@ -1,8 +1,8 @@
 var timer;
 
-$(document).ready(function() {
+$(document).ready(function () {
 
-    $(".result").on("click", function() {
+    $(".result").on("click", function () {
 
         var url = $(this).attr("href");
         var id = $(this).attr("data-linkId");
@@ -18,7 +18,7 @@ $(document).ready(function() {
 
     var grid = $(".imageResults");
 
-    grid.on("layoutComplete", function() {
+    grid.on("layoutComplete", function () {
         $(".gridItem img").css("visibility", "visible");
     });
 
@@ -36,18 +36,20 @@ function loadImage(src, className) {
     // console.log(src);
     var image = $("<img>");
 
-    image.on("load", function() {
+    image.on("load", function () {
         $("." + className + " a").append(image);
 
         clearTimeout(timer);
 
-        timer = setTimeout(function() {
+        timer = setTimeout(function () {
             $(".imageResults").masonry();
         }, 500);
     });
 
-    image.on("error", function() {
+    image.on("error", function () {
+        $('.' + className).remove();
 
+        $.post("ajax/setBroken.php", { src: src });
     });
 
     image.attr("src", src);
@@ -56,7 +58,7 @@ function loadImage(src, className) {
 function increaseLinkClicks(linkId, url) {
 
     $.post("ajax/updateLinkCount.php", { linkId: linkId })
-        .done(function(result) {
+        .done(function (result) {
             if (result != "") {
                 alert(result);
                 return;
